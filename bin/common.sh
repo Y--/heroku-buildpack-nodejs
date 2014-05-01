@@ -26,12 +26,13 @@ indent() {
 }
 
 cat_npm_debug_log() {
+  trap - ERR
   uname -a
-  which dmesg
+  # which dmesg
   echo "-------------------------------------------"
-  dmesg | egrep -i 'killed process'
+  grep -i 'killed process' /var/log/messages
   echo "-------------------------------------------"
-  egrep -i 'killed process' /var/log/messages
+  dmesg | grep -i 'killed process'
   echo "-------------------------------------------"
   test -f $build_dir/npm-debug.log && cat $build_dir/npm-debug.log
 }
