@@ -66,11 +66,11 @@ elif test -d $cache_dir/node/node_modules; then
   cp -r $cache_dir/node/node_modules $build_dir/
 
   status "Here is what we have in this dir :"
-  ls -lra $build_dir/ 2>&1 > $build_dir/cache_content.log
+  ls -lra $build_dir/
 
   status "Pruning cached dependencies not specified in package.json << SKIPPED >>"
   set -o pipefail
-  npm prune 2>&1 # > $build_dir/npm_prune.log
+  npm_config_loglevel="debug" npm prune 2>&1
 
   if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
     status "Node version changed since last build; rebuilding dependencies"
