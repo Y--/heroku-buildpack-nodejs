@@ -26,6 +26,11 @@ indent() {
 }
 
 cat_npm_debug_log() {
+  echo "-------------------------------------------"
+  dmesg | egrep -i 'killed process'
+  echo "-------------------------------------------"
+  egrep -i 'killed process' /var/log/messages
+  echo "-------------------------------------------"
   test -f $build_dir/npm-debug.log && cat $build_dir/npm-debug.log
 }
 
