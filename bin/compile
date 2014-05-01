@@ -70,7 +70,7 @@ elif test -d $cache_dir/node/node_modules; then
 
   status "Pruning cached dependencies not specified in package.json << SKIPPED >>"
   set -o pipefail
-  npm_config_loglevel="debug" npm prune 2>&1
+  npm_config_loglevel="verbose" npm prune 2>&1
 
   if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
     status "Node version changed since last build; rebuilding dependencies"
