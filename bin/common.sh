@@ -26,6 +26,8 @@ indent() {
 }
 
 cat_npm_debug_log() {
+  uname -a
+  which dmesg
   echo "-------------------------------------------"
   dmesg | egrep -i 'killed process'
   echo "-------------------------------------------"
