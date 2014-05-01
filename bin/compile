@@ -2,7 +2,7 @@
 
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
-# set -x          # enable debugging
+set -x          # enable debugging
 
 # Configure directories
 build_dir=$1
@@ -62,16 +62,16 @@ if test -d $build_dir/node_modules; then
   status "Rebuilding any native dependencies"
   npm rebuild 2>&1 | indent
 elif test -d $cache_dir/node/node_modules; then
-  status "Restoring node_modules directory from cache"
-  cp -r $cache_dir/node/node_modules $build_dir/
+  status "Restoring node_modules directory from cache << SKIPPED >>"
+  # cp -r $cache_dir/node/node_modules $build_dir/
 
-  status "Pruning cached dependencies not specified in package.json"
-  npm prune 2>&1 | indent
+  status "Pruning cached dependencies not specified in package.json << SKIPPED >>"
+  # npm prune 2>&1 | indent
 
-  if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
-    status "Node version changed since last build; rebuilding dependencies"
-    npm rebuild 2>&1 | indent
-  fi
+  # if test -f $cache_dir/node/.heroku/node-version && [ $(cat $cache_dir/node/.heroku/node-version) != "$node_version" ]; then
+  #   status "Node version changed since last build; rebuilding dependencies"
+  #   npm rebuild 2>&1 | indent
+  # fi
 
 fi
 
