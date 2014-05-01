@@ -30,7 +30,7 @@ cat_npm_debug_log() {
   uname -a
   # which dmesg
   echo "-------------------------------------------"
-  grep -i 'killed process' /var/log/messages
+  grep -i 'killed process' /var/log/*
   echo "-------------------------------------------"
   dmesg | grep -i 'killed process'
   echo "-------------------------------------------"
